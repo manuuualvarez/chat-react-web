@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const LoginPage = () => {
   return (
@@ -27,9 +28,7 @@ export const LoginPage = () => {
           </div>
 
           <div className="col text-right">
-            <a href="register.html" className="txt1">
-              New Account?
-            </a>
+            <Link to={'/auth/signup'} className="txt1"> New Account? </Link>
           </div>
         </div>
 
