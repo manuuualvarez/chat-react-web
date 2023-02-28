@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/chat.css'
 import { InboxPeople } from '../components/messages/InboxPeople'
 import { MessageList } from '../components/messages/MessageList'
+// import { NoChatSelected } from '../components/messages/NoChatSelected'
 
 
 export const ChatPage = () => {
@@ -12,6 +13,7 @@ export const ChatPage = () => {
             <InboxPeople />
             {/* List of Messages */}
             <MessageList/>
+            {/* <NoChatSelected/> */}
         </div>
 
 
