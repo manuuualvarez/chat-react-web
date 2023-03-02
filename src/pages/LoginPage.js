@@ -46,7 +46,7 @@ export const LoginPage = () => {
   }
 
   const fieldAreValid = () => {
-    return form.email.length > 3 && form.password.length > 6;
+    return form.email.length > 3 && form.password.length >= 6;
   }
 
   // Without depencency to check if the user is remembered
