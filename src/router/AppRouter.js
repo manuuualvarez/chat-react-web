@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { ChatPage } from '../pages/ChatPage'
-import { AuthRouter } from './AuthRouter'
 import { AuthContext } from '../auth/AuthContext'
+import { PublicsRoutes } from './PublicsRoutes'
+import { PrivatesRoutes } from './PrivatesRoutes'
 
  
 export const AppRouter = () => {
@@ -21,8 +21,17 @@ export const AppRouter = () => {
     return (
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<ChatPage />} />
-          <Route path="/auth/*" element={<AuthRouter />} />
+          {/* <Route exact path="/" element={<ChatPage />} /> */}
+          <Route
+            path="/"
+            element={<PrivatesRoutes isAuthenticated={ auth.logged } />}
+          />
+          {/* <Route path="/auth/*" element={<AuthRouter />} /> */}
+          <Route
+            path="/auth/*"
+            element={<PublicsRoutes isAuthenticated={ auth.logged } />}
+          />
+
           <Route path="*" element={<p>La página no existe.</p>} />
         </Routes>
       </BrowserRouter>
