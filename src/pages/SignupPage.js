@@ -28,8 +28,8 @@ export const SignupPage = () => {
     const { email, password, name } = form;
     const resp = await signUp(email, password, name);
     // Sweet Alert
-    if (!resp) {
-      Swal.fire('Something wrong', 'try again in a few minutes', 'error');
+    if (resp !== true) {
+      Swal.fire('Something wrong', resp, 'error');
     } 
   }
 
