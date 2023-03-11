@@ -1,4 +1,5 @@
 import React from 'react'
+import { hourMonth } from '../../helpers/hourMonth'
 
 export const IncomingMsg = ({ message }) => {
   return (
@@ -10,7 +11,7 @@ export const IncomingMsg = ({ message }) => {
             <div className="received_msg">
                 <div className="received_withd_msg">
                     <p>{ message.message }</p>
-                    <span className="time_date"> 11:01 AM | June 9</span>
+                    <span className="time_date"> { hourMonth(message.createdAt) } </span>
                 </div>
             </div>
         </div>
