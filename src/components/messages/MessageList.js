@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { MessageInbox } from './MessageInbox'
 import { IncomingMsg } from './IncomingMsg'
 import { OutgoingMsg } from './OutgoingMsg'
+import { ChatContext } from '../../context/chat/ChatContext'
+import { AuthContext } from '../../auth/AuthContext'
 
 export const MessageList = () => {
 
-    const messages = [1,2,3,4,5,6,7,8,9,10]
+    const { chatState } = useContext(ChatContext);
+    const { auth } = useContext(AuthContext);
+    const { messages } = chatState;
 
+    
   return (
     <>
         <div className="mesgs">
             <div className="msg_history">
                 { messages.map( msg => (
-                    (msg % 2 === 0) 
-                    ? <IncomingMsg key={msg}/> 
-                    : <OutgoingMsg key={msg}/>
+                    (msg.from === auth.uid) 
+                        ? <OutgoingMsg message ={ msg } key={msg._id}/> 
+                        : <IncomingMsg message ={ msg } key={msg._id}/> 
                     ))
                 }
             </div>

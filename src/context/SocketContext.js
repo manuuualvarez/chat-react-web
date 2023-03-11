@@ -42,10 +42,13 @@ export const SocketProvider = ({ children }) => {
     useEffect(() => {
         socket?.on('personal-message', (message) => {
             // Notify with dispatch that a new message has been received
+            dispatch({
+                type: types.newMessage,
+                payload: message
+            });
             // Autoscrolling to the bottom of the chat
-            console.log(message);
         });
-    }, [socket]);
+    }, [socket, dispatch]);
     
     return (
         <SocketContext.Provider value={{ socket, online }}>
