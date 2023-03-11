@@ -19,15 +19,19 @@ export const chatReducer = (state, action) => {
                 messages: []
             }
         case types.newMessage:
-
-        if (state.chatActive === action.payload.from  || state.chatActive === action.payload.to) {
+            if (state.chatActive === action.payload.from  || state.chatActive === action.payload.to) {
+                return {
+                    ...state,
+                    messages: [...state.messages, action.payload]
+                } 
+            } else {
+                return state;
+            }
+        case types.loadMessages:
             return {
                 ...state,
-                messages: [...state.messages, action.payload]
-            } 
-        } else {
-            return state;
-        }
+                messages: [...action.payload]
+            }
         default:
             return state;
     }

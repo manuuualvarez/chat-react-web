@@ -1,17 +1,25 @@
 import React, { useContext } from 'react'
 import { ChatContext } from '../../context/chat/ChatContext'
 import { types } from '../../types/types';
+import { fetchWithToken } from '../../helpers/fetch';
 
 export const SidebarUserItem = ({ user }) => {
 
     const { chatState, dispatch } = useContext(ChatContext);
     const { chatActive } = chatState;
 
-    const onUserSelected = () => {
+    const onUserSelected = async () => {
         dispatch({
             type: types.usersChatSelected,
             payload: user.uid
         });
+        // Load messages of the API
+        const data = await fetchWithToken(`messages/${ user.uid }`)
+        dispatch({
+            type: types.loadMessages,
+            payload: data.messages
+        });
+        // Move the Scroll to the bottom
     }
 
   return (
