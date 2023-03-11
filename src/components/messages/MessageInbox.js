@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { SocketContext } from '../../context/SocketContext';
+import { AuthContext } from '../../auth/AuthContext';
+import { ChatContext } from '../../context/chat/ChatContext';
 
 export const MessageInbox = () => {
 
     const [message, setMessage] = useState('');
+    const { auth } = useContext(AuthContext);
+    const { socket } = useContext(SocketContext);
+    const { chatState } = useContext(ChatContext);
+
 
     const onChange = ({ target }) => {
         setMessage( target.value );
@@ -13,6 +20,11 @@ export const MessageInbox = () => {
         // Check the message is not empty
         if ( message.length === 0) { return };
         // Emit the socket event to send the message
+        socket.emit('personal-message', {
+            from: auth.uid,
+            to: chatState.chatActive,
+            message
+        });
         setMessage('');
     }
 
