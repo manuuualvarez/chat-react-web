@@ -15,7 +15,11 @@ export const MessageList = () => {
   return (
     <>
         <div className="mesgs">
-            <div className="msg_history">
+            <div 
+                // For autosroll
+                id="msg-scroll"
+                className="msg_history"
+            >
                 { messages.map( msg => (
                     (msg.from === auth.uid) 
                         ? <OutgoingMsg message ={ msg } key={msg._id}/> 

@@ -6,6 +6,7 @@ import { types } from '../types/types';
 
 import { AuthContext } from '../auth/AuthContext';
 import { ChatContext } from './chat/ChatContext';
+import { scrollToBottomAnimated } from '../helpers/scrollToBottom';
 
 export const SocketContext = createContext();
 
@@ -47,6 +48,7 @@ export const SocketProvider = ({ children }) => {
                 payload: message
             });
             // Autoscrolling to the bottom of the chat
+            scrollToBottomAnimated('msg-scroll');
         });
     }, [socket, dispatch]);
     
