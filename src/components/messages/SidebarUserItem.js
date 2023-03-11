@@ -23,7 +23,6 @@ export const SidebarUserItem = ({ user }) => {
         });
         // Move the Scroll to the bottom
         scrollToBottom('msg-scroll');
-    
     }
 
   return (
