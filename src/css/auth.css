@@ -332,6 +332,10 @@ iframe {
   background-color: grey;
 }
 
+.msg_send_btn:disabled {
+  background-color: grey;
+}
+
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 

@@ -1,15 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export const MessageInbox = () => {
+
+    const [message, setMessage] = useState('');
+
+    const onChange = ({ target }) => {
+        setMessage( target.value );
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        // Check the message is not empty
+        if ( message.length === 0) { return };
+        // Emit the socket event to send the message
+        setMessage('');
+    }
+
+
   return (
     <>
-        <form>
+        <form
+            onSubmit={ onSubmit }
+        >
             <div className="type_msg row">
                 <div className="input_msg_write col-sm-9">
-                    <input type="text" className="write_msg" placeholder="Mensaje..." />
+                    <input 
+                        type="text" 
+                        className="write_msg" 
+                        placeholder="Write your message..." 
+                        value={ message }
+                        onChange={ onChange }
+                    />
                 </div>
                 <div className="col-sm-3 text-center">
-                    <button className="msg_send_btn mt-3" type="submit">
+                    <button 
+                        className="msg_send_btn mt-3" 
+                        type="submit"
+                        disabled={ message.length === 0 }
+                    >
                         Send
                     </button>
                 </div>

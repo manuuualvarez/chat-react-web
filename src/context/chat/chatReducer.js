@@ -10,9 +10,13 @@ export const chatReducer = (state, action) => {
                 users: [...action.payload]
             }
         case types.usersChatSelected:
+            // Avoid that remove the messages when the user is selected and tapped twice
+            if (state.chatActive === action.payload) return state;
+            // Select the new user as active and clean the messages
             return {
                 ...state,
                 chatActive: action.payload,
+                messages: []
             }
         default:
             return state;
